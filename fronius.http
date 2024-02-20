@@ -1,0 +1,1 @@
+GET http://10.174.27.14/solar_api/v1/GetPowerFlowRealtimeData.fcgi

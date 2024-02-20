@@ -1,0 +1,9 @@
+@apiKey={{$dotenv OPEN_WEATHER_MAP_API_KEY}}
+
+###
+
+GET http://api.openweathermap.org/geo/1.0/direct?q=v%C3%B6cklabruck,at&limit=5&appid={{apiKey}}
+
+###
+
+GET https://api.openweathermap.org/data/2.5/weather?lat=48.0078587&lon=13.6460378&units=metric&lang=de&appid={{apiKey}}
