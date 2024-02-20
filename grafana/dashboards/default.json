@@ -85,7 +85,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "power_flow_realtime.site_watt_generated"
+              "options": "power_flow_realtime.generated"
             },
             "properties": [
               {
@@ -97,7 +97,19 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "power_flow_realtime.site_watt_surplus"
+              "options": "power_flow_realtime.consumed"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Energieverbrauch"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "power_flow_realtime.surplus"
             },
             "properties": [
               {
@@ -107,18 +119,6 @@
                   "tooltip": true,
                   "viz": true
                 }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "0 - power_flow_realtime.site_watt_surplus"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "Energieverbrauch"
               }
             ]
           }
@@ -149,7 +149,20 @@
             "type": "influxdb",
             "uid": "a296b07c-64e6-47c9-9ea7-0963498b0b22"
           },
-          "groupBy": [],
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
           "measurement": "power_flow_realtime",
           "orderByTime": "ASC",
           "policy": "default",
@@ -164,6 +177,16 @@
                   "site_watt_surplus"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "surplus"
+                ],
+                "type": "alias"
               }
             ],
             [
@@ -172,6 +195,16 @@
                   "site_watt_generated"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "generated"
+                ],
+                "type": "alias"
               }
             ]
           ],
@@ -183,17 +216,16 @@
         {
           "id": "calculateField",
           "options": {
-            "alias": "",
+            "alias": "power_flow_realtime.consumed",
             "binary": {
-              "left": "0",
+              "left": "power_flow_realtime.generated",
               "operator": "-",
-              "right": "power_flow_realtime.site_watt_surplus"
+              "right": "power_flow_realtime.surplus"
             },
             "mode": "binary",
             "reduce": {
               "reducer": "sum"
-            },
-            "replaceFields": false
+            }
           }
         }
       ],
@@ -258,7 +290,20 @@
             "type": "influxdb",
             "uid": "a296b07c-64e6-47c9-9ea7-0963498b0b22"
           },
-          "groupBy": [],
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
           "measurement": "power_flow_realtime",
           "orderByTime": "ASC",
           "policy": "default",
@@ -271,6 +316,10 @@
                   "site_self_consumption_percent"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
               }
             ]
           ],
@@ -339,7 +388,20 @@
             "type": "influxdb",
             "uid": "a296b07c-64e6-47c9-9ea7-0963498b0b22"
           },
-          "groupBy": [],
+          "groupBy": [
+            {
+              "params": [
+                "5m"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
           "measurement": "power_flow_realtime",
           "orderByTime": "ASC",
           "policy": "default",
@@ -352,6 +414,10 @@
                   "site_autonomy_percent"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
               }
             ]
           ],
@@ -540,7 +606,7 @@
       "type": "stat"
     }
   ],
-  "refresh": "10s",
+  "refresh": "5m",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
@@ -554,6 +620,6 @@
   "timezone": "",
   "title": "Default",
   "uid": "fecbfbaa-5bc9-447f-ae26-249eae18f3a0",
-  "version": 1,
+  "version": 5,
   "weekStart": ""
 }
