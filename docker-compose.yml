@@ -21,9 +21,6 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=htlvb
       - DOCKER_INFLUXDB_INIT_BUCKET=default
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_TOKEN}
-    ports:
-      - 17428:8086
-    command: influxd
   telegraf:
     image: telegraf
     environment:
