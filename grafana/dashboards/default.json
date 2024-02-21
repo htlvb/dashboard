@@ -37,7 +37,7 @@
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
-            "axisPlacement": "auto",
+            "axisPlacement": "right",
             "barAlignment": 0,
             "drawStyle": "line",
             "fillOpacity": 0,
@@ -620,6 +620,6 @@
   "timezone": "",
   "title": "Default",
   "uid": "fecbfbaa-5bc9-447f-ae26-249eae18f3a0",
-  "version": 5,
+  "version": 1,
   "weekStart": ""
 }
