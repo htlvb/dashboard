@@ -11,7 +11,8 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/etc/dashboards
     ports:
-      - 17427:3000
+      - 80:3000
+    restart: unless-stopped
   influxdb:
     image: influxdb
     environment:
@@ -21,6 +22,7 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=htlvb
       - DOCKER_INFLUXDB_INIT_BUCKET=default
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_TOKEN}
+    restart: unless-stopped
   telegraf:
     image: telegraf
     environment:
@@ -31,3 +33,4 @@ services:
       - INFLUXDB_TOKEN=${INFLUXDB_TOKEN}
     volumes:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    restart: unless-stopped
