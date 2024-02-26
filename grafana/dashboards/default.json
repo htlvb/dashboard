@@ -40,8 +40,8 @@
             "axisPlacement": "right",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
+            "fillOpacity": 50,
+            "gradientMode": "opacity",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -91,6 +91,13 @@
               {
                 "id": "displayName",
                 "value": "Energieproduktion"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
               }
             ]
           },
@@ -103,6 +110,13 @@
               {
                 "id": "displayName",
                 "value": "Energieverbrauch"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
               }
             ]
           },
